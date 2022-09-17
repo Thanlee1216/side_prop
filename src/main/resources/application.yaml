@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+
+
+  datasource:
+    url: jdbc:mariadb://ddnc-springboot-webservice.coniu16ba5mz.ap-northeast-2.rds.amazonaws.com/ddnc_springboot_webservice
+    username: ddncf
+    password: ddncfriend#
+    driver-class-name: org.mariadb.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:com.ddnc.toy.repository/*.xml
+  config-location: classpath:mybatis-config.xml
+  type-aliases-package: com.ddnc.toy.domain
+
