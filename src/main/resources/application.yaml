@@ -14,9 +14,9 @@ spring:
 
 
   datasource:
-    url: jdbc:mariadb://ddnc-springboot-webservice.coniu16ba5mz.ap-northeast-2.rds.amazonaws.com/ddnc_springboot_webservice
-    username: ddncf
-    password: ddncfriend#
+    url: jdbc:mariadb://sideprop.coniu16ba5mz.ap-northeast-2.rds.amazonaws.com/sideCommunity
+    username: sidefriends
+    password: sidefriends4#
     driver-class-name: org.mariadb.jdbc.Driver
 
 mybatis:

@@ -3,7 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.web.side_prop.repository.TestRepository">
 
-    <select id="testInfo" parameterType="String">
-        select * from test
-    </select>
+    <insert id="testInfo" parameterType="Map">
+--         insert into testTable value(#{id}, #{name})
+    select * from testTable
+    </insert>
 </mapper>
