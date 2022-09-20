@@ -20,7 +20,7 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
 
 mybatis:
-  mapper-locations: classpath:com.ddnc.toy.repository/*.xml
+  mapper-locations: classpath:com.web.side_prop.repository/*.xml
   config-location: classpath:mybatis-config.xml
-  type-aliases-package: com.ddnc.toy.domain
+  type-aliases-package: com.web.side_prop.domain
 
