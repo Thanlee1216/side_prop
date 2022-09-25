@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>M-012분석시스템</title>
+    <title>M-012분석시스템1</title>
 </head>
 
 <html class="fontawesome-i2svg-active fontawesome-i2svg-complete">
