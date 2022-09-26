@@ -5,37 +5,30 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<script>
-//   $(function () {
-//     let token = $("input[name='_csrf']").val();
-//     let header = "X-CSRF-TOKEN";
-//
-//     $(document).ajaxSend(function (e, xhr, options) {
-//       xhr.setRequestHeader(header, token);
-//     });
-//
-//     $.ajaxSetup({
-//       error: function (xhr, status, err) {
-//         if (xhr.status == 401) {
-// //          alert("인증실패(401)");
-//           alert("잘못된 접근입니다. 로그인 페이지로 이동합니다.");
-//           location.href = "/login";
-//         } else if (xhr.status == 403) {
-//           //          alert("세션만료(403)");
-//           alert("잘못된 접근입니다. 로그인 페이지로 이동합니다.");
-//           location.href = "/login";
-//         }
-//       }
-//     });
-//   });
-//
-//   let agent = navigator.userAgent.toLowerCase();
-//   if ((navigator.appName == 'Netscape' && agent.indexOf('trident') != -1) || (agent.indexOf("msie") != -1)) {
-//     // ie일 경우
-//     if (window.location.pathname !== "/notSupported") {
-//       alert("인터넷 익스플로러는 지원하지 않습니다.")
-//       location.href = "/notSupported"
-//     }
-//   }
-</script>
-
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <a href="#" class="brand">
+            <img src="images/logo.png" width="120" height="40" alt="Logo" />
+            <!-- This is website logo -->
+            </a>
+            <!-- Navigation button, visible on small resolution -->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <i class="icon-menu"></i>
+            </button>
+        <!-- Main navigation -->
+            <div class="nav-collapse collapse pull-right">
+                <ul class="nav" id="top-navigation">
+                    <li class="active"><a href="#home">Home</a></li>
+                    <li><a href="#service">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#price">Price</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        <!-- End main navigation -->
+        </div>
+    </div>
+</div>
