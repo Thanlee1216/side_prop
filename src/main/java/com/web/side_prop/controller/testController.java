@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -27,15 +28,19 @@ public class testController {
         return new ModelAndView("index");
     }
 
-    @RequestMapping(path = "/testInsert", method=RequestMethod.GET)
+    @RequestMapping(path = "/testInsert", method=RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> testInsert(@RequestParam Map<String, Object> param) throws Exception {
         System.out.println(param.get("id"));
         System.out.println(param.get("name"));
+        Map<String, Object> param1 = new HashMap<>();
 
-        Map<String, Object> param1 = testService.testSvc(param);
+        int param2 = testService.testSvcInsert(param);
+        List<Map<String, Object>> param3 = testService.testSvc(param);
 
-        param1.put("msg", "success");
+        if(param2 > 0) {
+            param1.put("msg", "success");
+        }
 
 
         return param1;

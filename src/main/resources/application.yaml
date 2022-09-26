@@ -14,10 +14,10 @@ spring:
 
 
   datasource:
-    url: jdbc:mariadb://sideprop.coniu16ba5mz.ap-northeast-2.rds.amazonaws.com/sideCommunity
+    url: jdbc:log4jdbc:mariadb://sideprop.coniu16ba5mz.ap-northeast-2.rds.amazonaws.com/sideCommunity
     username: sidefriends
     password: sidefriends4#
-    driver-class-name: org.mariadb.jdbc.Driver
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 
 mybatis:
   mapper-locations: classpath:com.web.side_prop.repository/*.xml

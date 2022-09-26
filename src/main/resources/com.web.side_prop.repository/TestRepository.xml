@@ -4,7 +4,12 @@
 <mapper namespace="com.web.side_prop.repository.TestRepository">
 
     <select id="testInfo" parameterType="hashmap" resultType="hashmap">
---         insert into testTable value(#{id}, #{name})
+        /* TestDAO testInfo */
         select * from testTable
     </select>
+
+    <insert id="testInsert" parameterType="hashmap">
+        /* TestDAO testInsert */
+        insert into testTable value(#{id}, #{name})
+    </insert>
 </mapper>

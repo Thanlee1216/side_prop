@@ -5,9 +5,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script>
+    // let token = $("input[name='_csrf']").val();
+    // let header = "X-CSRF-TOKEN";
+</script>
+
 <div class="navbar">
     <div class="navbar-inner">
         <div class="container">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <a href="#" class="brand">
             <img src="images/logo.png" width="120" height="40" alt="Logo" />
             <!-- This is website logo -->

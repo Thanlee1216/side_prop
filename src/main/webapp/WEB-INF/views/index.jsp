@@ -3,31 +3,37 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<%--<div id="layoutSidenav">--%>
-<%--    <button id="searchBtn" type="button" class="">--%>
-<%--        검색--%>
-<%--    </button>--%>
-<%--</div>--%>
+<div id="layoutSidenav">
+    <button id="searchBtn" type="button" class="">
+        검색
+    </button>
+</div>
 <script>
-    // $("#searchBtn").on("click", function() {
-    //     let param = {
-    //         "id" : $("#datepicker1").val()
-    //         , "name" : $("#datepicker2").val()
-    //     }
-    //     $.ajax({
-    //             type: "GET",
-    //             url: '/testInsert',
-    //             data:param,
-    //             dataType: "json",
-    //             success: function(data){
-    //                 console.log(data.msg);
-    //             },
-    //             error:function(){
-    //                 console.log("fail");
-    //             }
-    //         }
-    //     );
-    // })
+    $("#searchBtn").on("click", function() {
+        let token = $("input[name='_csrf']").val();
+        let header = "X-CSRF-TOKEN";
+        let param = {
+            "id" : "idTest"
+            , "name" : "nameTest"
+        }
+        $.ajax({
+                type: "POST",
+                url: '/testInsert',
+                data:param,
+                dataType: "json",
+                beforeSend : function(xhr)
+                {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                    xhr.setRequestHeader(header, token);
+                },
+                success: function(data){
+                    console.log(data.msg);
+                },
+                error:function(xhr,status,error){
+                    console.log("fail");
+                }
+            }
+        );
+    })
 </script>
 <!-- Start home section -->
 <div id="home">
