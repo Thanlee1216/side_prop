@@ -16,31 +16,19 @@ import java.util.Set;
 public class Users extends BaseTimeEntity implements UserDetails {
 
     @Id
-    private Long id;
-
-    private String email;
-
-    private String phone;
-
-    private String name;
+    private String id;
 
     private String password;
 
-    private String address;
+    private String name;
+
+    private String email;
+
+    private String birth;
 
     private boolean enabled;
 
     private Set<UserAuthority> authorities;
-
-    private boolean isMarketing;
-
-    private String kakaoId;
-
-    private String profileImgName;
-
-    private String verificationCode;
-
-    private MultipartFile profileImg;
 
     @Override
     public String getUsername() {

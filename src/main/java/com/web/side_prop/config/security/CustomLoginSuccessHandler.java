@@ -48,7 +48,7 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
         RedirectUrlType intRedirectStrategy = decideRedirectStrategy(request, response);
 
         HttpSession session = request.getSession();
-        session.setAttribute("user", ((SpringUser)authentication.getDetails()).getUser());
+        session.setAttribute("user", authentication.getPrincipal());
 
         switch(intRedirectStrategy){
             case SESSION:

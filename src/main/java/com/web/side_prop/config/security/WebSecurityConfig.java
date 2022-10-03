@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.addFilterBefore(characterEncodingFilter(), SecurityContextPersistenceFilter.class)
                 .formLogin().loginPage("/login")
-                .usernameParameter("email")
+                .usernameParameter("id")
                 .passwordParameter("password")
                 .loginProcessingUrl("/loginProcess")
                 .failureHandler(new CustomLoginFailureHandler())
@@ -50,10 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/error").permitAll()
                 .antMatchers("/resources/**").permitAll()
-                .antMatchers("/user/memberShip").permitAll()
-                .antMatchers("/user/**").hasAnyAuthority("ROLE_USER")
-                .antMatchers("/cs/**").hasAnyAuthority("ROLE_USER")
-                .antMatchers("/service/copy/**").hasAnyAuthority("ROLE_USER")
 
                 .and()
                 .logout().logoutUrl("/logout")

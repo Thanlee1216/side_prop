@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.side_prop.repository.LoginRepository">
+
+    <select id="selectById" parameterType="String" resultType="Users">
+        /* TestDAO testInfo */
+        select * from member_M where id = #{id}
+    </select>
+
+    <select id="selectAuthorityById" parameterType="String" resultType="UserAuthority">
+        /* TestDAO testInsert */
+        select * from member_A where id = #{id}
+    </select>
+</mapper>

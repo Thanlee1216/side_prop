@@ -15,7 +15,7 @@ import org.springframework.security.core.GrantedAuthority;
 public class UserAuthority extends BaseTimeEntity implements GrantedAuthority {
 
     @Id
-    private Long userId;
+    private String id;
 
     @Id
     private String authority;

@@ -29,6 +29,8 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/jquery.cslider.css" />
     <link rel="stylesheet" type="text/css" href="/resources/css/jquery.bxslider.css" />
     <link rel="stylesheet" type="text/css" href="/resources/css/animate.css" />
+    <link href="/resources/css/global.css" rel="stylesheet">
+
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resources/img/ico/apple-touch-icon-144.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resources/img/ico/apple-touch-icon-114.png">
@@ -46,16 +48,16 @@
 
 
     <c:set var="URL" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-    <c:choose>
-        <c:when test="${URL == '/login' or URL == '/signup' or URL == '/signup/email'}">
-            <t:insertAttribute name="body" />
-        </c:when>
-        <c:otherwise>
+<%--    <c:choose>--%>
+<%--        <c:when test="${URL == '/login' or URL == '/signup' or URL == '/signup/email'}">--%>
+<%--            <t:insertAttribute name="body" />--%>
+<%--        </c:when>--%>
+<%--        <c:otherwise>--%>
             <t:insertAttribute name="header" />
             <t:insertAttribute name="body" />
             <t:insertAttribute name="footer" />
-        </c:otherwise>
-    </c:choose>
+<%--        </c:otherwise>--%>
+<%--    </c:choose>--%>
 </div>
 
     <!-- ScrollUp button end -->

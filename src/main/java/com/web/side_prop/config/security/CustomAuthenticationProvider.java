@@ -1,5 +1,6 @@
 package com.web.side_prop.config.security;
 
+import com.web.side_prop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -17,24 +18,26 @@ import java.util.Collection;
 @Configuration
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    //특정 페이지 접속할 수 없게 권한 준다 예를 들어서 마이페이 같은 경우 로그인을 해야만 들어갈 수 있으니까
-
+    private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     public final Integer SESSION_TIMEOUT_IN_SECONDS = 30*60;
     private final HttpSession httpSession;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String email = (String)authentication.getPrincipal();
+        String id = (String)authentication.getPrincipal();
         String password = (String)authentication.getCredentials();
         SpringUser springUser;
+        //스프링 시큐리티 적용 폼 로그인
+        springUser = (SpringUser) userService.loadUserByUsername(id);
+//        if (!passwordEncoder.matches(password, springUser.getPassword())) {
+//            // 로그인 실패 이력 남기기
+////            userService.updateFailedLoginCountPlus(email);
+//            throw new BadCredentialsException("비밀번호가 일치하지 않습니다.");
+//        }
 
-
-
-        // 유저 로그인 이력 남기기
-//        userService.updateMemberLoginDt(springUser.getMember().getMemberNo());
-//        userService.updateFailedLoginCountInit(userId);
-
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(id, password, springUser.getAuthorities());
+        authenticationToken.setDetails(springUser);
         return authentication;
 
     }
