@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.side_prop.repository.MyPageRepository">
+    <!-- 회원정보수정 -->
+    <select id="selectMemberId" parameterType="String" resultType="Mypage">
+        /* MyPageRepository selectMemberId */
+        SELECT *
+          FROM MEMBER_M
+         WHERE ID = #{id}
+    </select>
+
+    <update id="updateMember" parameterType="Mypage">
+        /* MyPageRepository updateMember */
+        UPDATE MEMBER_M
+           SET PASSWORD = #{password}
+             , NAME = #{name}
+             , EMAIL = #{email}
+             , BIRTH = #{birth}
+             , MDYDT = SYSDATE
+         WHERE ID = #{id}
+    </update>
+
+    <!-- 메모 -->
+    <select id="myboardPaging" parameterType="hashmap" resultType="hashmap">
+        /* MyPageRepository mybodradPaging */
+    </select>
+
+    <insert id="insertMyboard" parameterType="Mypage">
+        /* MyPageRepository insertMyboard */
+        INSERT INTO MYBOARD
+        (
+        ID
+        , MY_TITLE
+        , MY_CONTENT
+        , CRTDT
+        , MDYDT
+        )
+        VALUES
+        (
+        #{id}
+        , #{my_title}
+        , #{my_content}
+        , SYSDATE
+        , SYSDATE
+        )
+    </insert>
+
+    <update id="updateMyboard" parameterType="Mypage">
+        /* MyPageRepository updateMyboard */
+        UPDATE MYBOARD
+           SET MY_TITLE = #{my_title}
+             , MY_CONTENT = #{my_content}
+             , MDYDT = SYSDATE
+         WHERE MY_IDX = #{my_idx}
+    </update>
+
+    <delete id="deleteMyboard" parameterType="hashmap">
+        DELETE
+          FROM MYBOARD
+         WHERE MY_IDX = #{my_idx}
+    </delete>
+</mapper>
