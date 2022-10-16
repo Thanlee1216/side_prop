@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.side_prop.repository.MyboardRepository">
+
+    <select id="selectMyboardList" resultType="Myboard">
+        /* MyPageRepository selectMyboardList */
+        SELECT *
+          FROM MYBOARD
+        ORDER BY MY_IDX DESC
+        LIMIT #{offset}, #{amount}
+    </select>
+
+    <insert id="insertMyboard" parameterType="Myboard">
+        /* MyPageRepository insertMyboard */
+        INSERT INTO MYBOARD
+        (
+        ID
+        , MY_TITLE
+        , MY_CONTENT
+        , CRTDT
+        , MDYDT
+        )
+        VALUES
+        (
+        #{id}
+        , #{my_title}
+        , #{my_content}
+        , SYSDATE
+        , SYSDATE
+        )
+    </insert>
+
+    <update id="updateMyboard" parameterType="Myboard">
+        /* MyPageRepository updateMyboard */
+        UPDATE MYBOARD
+           SET MY_TITLE = #{my_title}
+             , MY_CONTENT = #{my_content}
+             , MDYDT = SYSDATE
+         WHERE MY_IDX = #{my_idx}
+    </update>
+
+    <delete id="deleteMyboard" parameterType="int">
+        DELETE
+          FROM MYBOARD
+         WHERE MY_IDX = #{my_idx}
+    </delete>
+</mapper>
