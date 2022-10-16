@@ -5,9 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Collection;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -32,7 +34,7 @@ public class Users extends BaseTimeEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return null;
     }
 
     @Override

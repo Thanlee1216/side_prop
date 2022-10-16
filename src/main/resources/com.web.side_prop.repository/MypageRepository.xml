@@ -2,16 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.web.side_prop.repository.MyPageRepository">
-    <!-- 회원정보수정 -->
-    <select id="selectMemberId" parameterType="String" resultType="Mypage">
-        /* MyPageRepository selectMemberId */
+
+    <select id="selectMyInfoById" parameterType="String" resultType="Mypage">
+        /* MyPageRepository selectMyInfoById */
         SELECT *
-          FROM MEMBER_M
+          FROM MEMBER_M M
+            INNER JOIN MEMBER_A A
+            ON A.ID = M.ID
          WHERE ID = #{id}
     </select>
 
-    <update id="updateMember" parameterType="Mypage">
-        /* MyPageRepository updateMember */
+    <update id="updateMyInfo" parameterType="Mypage">
+        /* MyPageRepository updateMyInfo */
         UPDATE MEMBER_M
            SET PASSWORD = #{password}
              , NAME = #{name}
@@ -21,43 +23,51 @@
          WHERE ID = #{id}
     </update>
 
-    <!-- 메모 -->
-    <select id="myboardPaging" parameterType="hashmap" resultType="hashmap">
-        /* MyPageRepository mybodradPaging */
-    </select>
-
-    <insert id="insertMyboard" parameterType="Mypage">
-        /* MyPageRepository insertMyboard */
-        INSERT INTO MYBOARD
-        (
-        ID
-        , MY_TITLE
-        , MY_CONTENT
-        , CRTDT
-        , MDYDT
-        )
-        VALUES
-        (
-        #{id}
-        , #{my_title}
-        , #{my_content}
-        , SYSDATE
-        , SYSDATE
-        )
-    </insert>
-
-    <update id="updateMyboard" parameterType="Mypage">
-        /* MyPageRepository updateMyboard */
-        UPDATE MYBOARD
-           SET MY_TITLE = #{my_title}
-             , MY_CONTENT = #{my_content}
+    <update id="updateMyInfoStatus" parameterType="Mypage">
+        /* MyPageRepository updateMyInfoStatus */
+        UPDATE MEMBER_M
+           SET AUTHORITY = #{authority}
              , MDYDT = SYSDATE
-         WHERE MY_IDX = #{my_idx}
+         WHERE ID = #{id}
     </update>
 
-    <delete id="deleteMyboard" parameterType="hashmap">
-        DELETE
-          FROM MYBOARD
-         WHERE MY_IDX = #{my_idx}
-    </delete>
+    <select id="selectMyListCnt" parameterType="Mypage" resultType="Mypage">
+        /* MyPageRepository selectMyListCnt */
+        SELECT COUNT(*)
+          FROM MYBOARD MY
+            INNER JOIN BOARD_FREE FREE ON MY.ID = FREE.MEM_ID
+            INNER JOIN BOARD_QNA QNA ON FREE.MEM_ID = QNA.MEM_ID
+         WHERE MY.ID = #{id}
+           AND FREE.MEM_ID = #{id}
+           AND QNA.MEM_ID = #{id}
+    </select>
+
+    <select id="selectMyList" parameterType="Mypage" resultType="Mypage">
+        /* MyPageRepository selectMyList */
+        SELECT *
+          FROM MYBOARD MY
+            INNER JOIN BOARD_FREE FREE ON MY.ID = FREE.MEM_ID
+            INNER JOIN BOARD_QNA QNA ON FREE.MEM_ID = QNA.MEM_ID
+         WHERE MY.ID = #{id}
+           AND FREE.MEM_ID = #{id}
+           AND QNA.MEM_ID = #{id}
+    </select>
+
+    <select id="selectMyComListCnt" parameterType="Mypage" resultType="int">
+        /* MyPageRepository selectMyComListCnt */
+        SELECT COUNT(*)
+          FROM BOARD_FREE_COM FREE
+            INNER JOIN BOARD_QNA_COM QNA ON FREE.MEM_ID = QNA.MEM_ID
+         WHERE FREE.MEM_ID = #{id}
+           AND QNA.MEM_ID = #{id}
+    </select>
+
+    <select id="selectMyComList" parameterType="Mypage" resultType="Mypage">
+        /* MyPageRepository selectMyComList */
+        SELECT *
+          FROM BOARD_FREE_COM FREE
+            INNER JOIN BOARD_QNA_COM QNA ON FREE.MEM_ID = QNA.MEM_ID
+         WHERE FREE.MEM_ID = #{id}
+           AND QNA.MEM_ID = #{id}
+    </select>
 </mapper>

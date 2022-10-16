@@ -15,5 +15,5 @@ public class Myboard {
 
     private String my_title;
 
-    private String my_content;
+    private String type;
 }
